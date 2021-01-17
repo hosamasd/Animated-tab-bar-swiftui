@@ -8,9 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var selectedtab = "home"
+    
+    init() {
+        
+        UITabBar.appearance().isHidden = true
+    }
+    
+    // Location For each Curve...
+    @State var xAxis: CGFloat = 0
+    
+    @Namespace var animation
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Home()
     }
 }
 
