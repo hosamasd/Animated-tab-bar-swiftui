@@ -10,7 +10,7 @@ import SwiftUI
 struct Home: View {
     
     @State var selectedtab = "home"
-   
+    @EnvironmentObject var vm: MainViewModel
 
     init() {
         
@@ -19,7 +19,7 @@ struct Home: View {
     
     // Location For each Curve...
     @State var xAxis: CGFloat = 0
-    
+//    @AppStorage("hid") var hideTab:Bool = false
     @Namespace var animation
     
     var body: some View {
@@ -36,16 +36,20 @@ struct Home: View {
                     .ignoresSafeArea(.all, edges: .all)
                     .tag("box")
                 
-                Color.purple
+                SHContentView()
+//                Color.purple
                     .ignoresSafeArea(.all, edges: .all)
                     .tag("bell")
                 
-                Color.blue
+                EWContentView()
+//                Color.blue
                     .ignoresSafeArea(.all, edges: .all)
                     .tag("message")
             }
             
             // Custom tab Bar...
+            
+            if !vm.hideTab {
             CustomTabBar(selectedtab: $selectedtab, xAxis: $xAxis, name: animation)
                 .padding(.horizontal,30)
                 .padding(.vertical)
@@ -53,6 +57,7 @@ struct Home: View {
                 .padding(.horizontal)
                 // Bottom Edge...
                 .padding(.bottom,bottom! == 0 ? 15 : bottom)
+            }
         }
         .ignoresSafeArea(.all, edges: .bottom)
         

@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct Animated_tab_barApp: App {
+    var order = MainViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(order)
         }
     }
 }
